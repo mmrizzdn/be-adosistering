@@ -1,0 +1,238 @@
+/* color palette */
+:root {
+  /** primary color */
+  --primary50: #ecfbcf;
+  --primary100: #d5f7a1;
+  --primary200: #b1e86f;
+  --primary300: #8bd149;
+  --primary400: #76c03f;
+  --primary500: #5bb318;
+  --primary600: #449911;
+  --primary700: #2f7b19;
+  --primary800: #235c12;
+  --primary900: #122405;
+
+  /** success color */
+  --success50: #e7fbd3;
+  --success100: #cbf7a8;
+  --success200: #a3e979;
+  --success300: #84de5f;
+  --success400: #7ad455;
+  --success500: #46b825;
+  --success600: #2a9218;
+  --success700: #1c8014;
+  --success800: #085f08;
+  --success900: #064406;
+
+  /** info color */
+  --info50: #d5defc;
+  --info100: #b8c9fa;
+  --info200: #95adf7;
+  --info300: #7292f5;
+  --info400: #4e77f2;
+  --info500: #2b5cf0;
+  --info600: #1d3da0;
+  --info700: #162e78;
+  --info800: #0e1f50;
+  --info900: #091230;
+
+  /** warning color */
+  --warning50: #fef9d4;
+  --warning100: #fef5b8;
+  --warning200: #fdf094;
+  --warning300: #fdec71;
+  --warning400: #fce74e;
+  --warning500: #f5da1d;
+  --warning600: #a8971c;
+  --warning700: #7e7115;
+  --warning800: #544b0e;
+  --warning900: #322d08;
+
+  /** danger color */
+  --danger50: #f6cccc;
+  --danger100: #f1aaaa;
+  --danger200: #e98080;
+  --danger300: #e25555;
+  --danger400: #db2b2b;
+  --danger500: #d40000;
+  --danger600: #8d0000;
+  --danger700: #6a0000;
+  --danger800: #470000;
+  --danger900: #2a0000;
+
+  /** neutral color */
+  --neutral50: #fdfdfe;
+  --neutral100: #f8f9fd;
+  --neutral200: #ebecf0;
+  --neutral300: #d7d8dc;
+  --neutral400: #a9aaae;
+  --neutral500: #818286;
+  --neutral600: #5b5c60;
+  --neutral700: #3f4044;
+  --neutral800: #242529;
+  --neutral900: #1a1b1f;
+}
+
+* {
+  box-sizing: border-box; /*membungkus elemen dengan rapat*/
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url(../images/sw.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: fit-content; /* Tinggi 100% dari viewport height */
+  margin: 0; /* Hapus margin bawaan dari browser */
+  padding: 0; /* Hapus padding bawaan dari browser */
+}
+
+/* pembungkus utama */
+body .container-besar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5rem;
+  height: 100vh;
+}
+
+/* pembungkus blur */
+body .container-blur {
+  width: 600px;
+  height: 600px;
+
+  background: rgba(247, 247, 247, 0.6);
+  border: 1px solid #f8f9fd;
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* pembungkus login */
+body .container-login {
+  /* box-sizing: border-box; */
+  padding: 0px;
+  gap: 16px;
+  /* background-color: salmon; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* pembungkus input */
+.kolom-input {
+  gap: 16px;
+}
+
+/* form input */
+form {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* tulisan login */
+.login {
+  font-size: 48px;
+  color: var(--primary600);
+  margin: 0px;
+  padding: 16px;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* kolom username */
+.username {
+  padding: 16px 16px;
+  width: 432px;
+  background-color: var(--neutral100);
+  border-radius: 8px;
+  border-color: transparent;
+}
+
+/* tulisan username */
+.username::placeholder {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--neutral400);
+}
+
+/* kolom username ketika di hover */
+.username:hover {
+  background-color: var(--primary50);
+}
+
+/* kolom username ketika diketik */
+.username:focus {
+  outline: none;
+  border: 2px solid var(--success400);
+}
+
+/* kolom password */
+.password {
+  padding: 16px 16px;
+  width: 432px;
+  background-color: var(--neutral100);
+  border-radius: 8px;
+  border-color: transparent;
+}
+
+/* tulisan password */
+.password::placeholder {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--neutral400);
+}
+
+/* kolom password ketika di hover */
+.password:hover {
+  background-color: var(--primary50);
+}
+
+/* kolom password ketika diketik */
+.password:focus {
+  outline: none;
+  border: 2px solid var(--success400);
+}
+
+/* icon mata */
+form .visibility-icon {
+  position: absolute;
+  left: 90%;
+  top: 70%;
+}
+
+/* button masuk */
+.button-masuk {
+  background-color: var(--primary500);
+  color: var(--neutral100);
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* tulisan button masuk */
+.button-masuk p {
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--neutral100);
+  padding: 11px;
+}
+
+/* button masuk ketika di hover */
+.button-masuk:hover {
+  background-color: var(--primary600);
+  font-size: 24px;
+  font-weight: bold;
+}
