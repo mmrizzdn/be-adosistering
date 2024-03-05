@@ -45,7 +45,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(usersRouter);
-app.use('/', firebaseRoutes);
+app.use('/firebase', firebaseRoutes);
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);
