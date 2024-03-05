@@ -6,7 +6,7 @@ const waterFlowSensor = require('../models/WaterFlowSensor');
 
 const router = express.Router();
 
-router.get('/api/firebase', async (req, res) => {
+router.get('/firebase', async (req, res) => {
 	try {
 		const urls = [
 			'https://adosistering-default-rtdb.asia-southeast1.firebasedatabase.app/SensorKelembaban.json',
