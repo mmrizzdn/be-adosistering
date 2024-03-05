@@ -3,6 +3,9 @@
 	"version": "0.0.0",
 	"private": true,
 	"main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
 	"scripts": {
 		"start": "nodemon app.js"
 	},
