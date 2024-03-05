@@ -45,9 +45,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-readdirSync('./routes').map((file) => app.use('/', require('./routes/' + file)));
+readdirSync('./routes').map((file) =>
+	app.use('/', require('./routes/' + file))
+);
 // app.use('/login', usersRouter);
 // app.use('/', firebaseRoutes);
+
+app.get('/', (req, res) => {
+	res.send('Tes')
+});
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);
