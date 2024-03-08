@@ -1,5 +1,4 @@
 const createError = require('http-errors');
-const dotenv = require('dotenv');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -50,10 +49,6 @@ readdirSync('./routes').map((file) =>
 );
 app.use('/login', usersRouter);
 app.use('/firebase', firebaseRoutes);
-
-app.get('/', (req, res) => {
-	res.send('Tes')
-});
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);
