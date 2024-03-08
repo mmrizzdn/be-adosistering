@@ -27,8 +27,7 @@
 		"morgan": "~1.9.1",
 		"mysql2": "^3.9.2",
 		"node-fetch": "^2.7.0",
-		"path": "^0.12.7",
-		"sequelize": "^6.37.0"
+		"path": "^0.12.7"
 	},
 	"devDependencies": {
 		"prisma": "^5.10.2"
