@@ -16,16 +16,18 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-async function connectToDatabase() {
-	try {
-		await db.authenticate();
-		console.log('Connection has been established successfully.');
-	} catch (error) {
-		console.error('Unable to connect to the database:', error);
-	}
-}
+// function connectToDatabase() {
+// 	try {
+// 		db.authenticate();
+// 		console.log('Connection has been established successfully.');
 
-connectToDatabase();
+// 		return true;
+// 	} catch (error) {
+// 		console.error('Unable to connect to the database:', error);
+// 	}
+// }
+
+// connectToDatabase();
 
 const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));

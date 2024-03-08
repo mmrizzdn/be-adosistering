@@ -1,8 +1,12 @@
+const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const fetch = require('node-fetch');
 
-const humiditySensor = require('../models/HumiditySensor');
-const waterFlowSensor = require('../models/WaterFlowSensor');
+// const humiditySensor = require('../models/HumiditySensor');
+// const waterFlowSensor = require('../models/WaterFlowSensor');
+
+const prisma = new PrismaClient();
+const currentDate = new Date();
 
 const router = express.Router();
 
@@ -21,10 +25,15 @@ router.get('/firebase', async (req, res) => {
 			responses.map((response) => response.json())
 		);
 
-		// Save data to MySQL using Sequelize for each table
+		console.log(responseData[0]);
+		// Save data to MySQL using prisma for each table
 		const savedData = await Promise.all([
-			humiditySensor.create(responseData[0]),
-			waterFlowSensor.create(responseData[1]),
+			prisma.SensorKelembaban.create({
+				data: { ...responseData[0], createdAt: currentDate, updatedAt: currentDate },
+			}),
+			prisma.SensorWaterFlow.create({
+				data: { ...responseData[1], createdAt: currentDate, updatedAt: currentDate },
+			}),
 		]);
 
 		// Return a response with the data that has been saved

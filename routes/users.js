@@ -28,7 +28,7 @@ router.get(
 	},
 	async (req, res) => {
 		try {
-			const users = await Users.findAll();
+			const result = await prisma.users.findMany();
 			// res.json(users);
 			res.render('login', { login });
 		} catch (error) {
@@ -48,7 +48,7 @@ router.post('/users', async (req, res) => {
 	const hashPassword = await bcrypt.hash(password, saltRounds);
 
 	try {
-		await Users.create({
+		await prisma.users.create({
 			username: username,
 			password: hashPassword,
 		});
@@ -66,7 +66,7 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
 	try {
-		const user = await Users.findAll({
+		const result = await prisma.users.findMany({
 			where: {
 				username: req.body.username,
 			},
@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
 			}
 		);
 
-		await Users.update(
+		await prisma.users.update(
 			{ refreshToken: refreshToken },
 			{
 				where: {
@@ -125,13 +125,13 @@ router.get('/token', async (req, res) => {
 			return res.sendStatus(401);
 		}
 
-		const user = await Users.findAll({
+		const result =await prisma.users.findAll({
 			where: {
 				refreshToken: refreshToken,
 			},
 		});
 
-		if (!user[0]) {
+		if (!result[0]) {
 			return res.sendStatus(403);
 		}
 
@@ -142,8 +142,8 @@ router.get('/token', async (req, res) => {
 				}
 			};
 
-		const userId = user[0].id;
-		const username = user[0].username;
+		const userId = result[0].id;
+		const username = result[0].username;
 		const accessToken = jwt.sign(
 			{ userId, username },
 			process.env.ACCESS_TOKEN_SECRET,
@@ -165,19 +165,19 @@ router.delete('/logout', async (req, res) => {
 		return res.sendStatus(204);
 	}
 
-	const user = await Users.findAll({
+	const result = await prisma.users.findMany({
 		where: {
 			refreshToken: refreshToken,
 		},
 	});
 
-	if (!user[0]) {
+	if (!result[0]) {
 		return res.sendStatus(204);
 	}
 
-	const userId = user[0].id;
+	const userId = result[0].id;
 
-	await Users.update(
+	await prisma.users.update(
 		{ refreshToken: null },
 		{
 			where: {

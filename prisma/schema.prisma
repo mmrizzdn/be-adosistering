@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model SensorKelembaban {
+  id         Int      @id @default(autoincrement())
+  KadarAir   Float    @db.Float
+  Kelembaban Float    @db.Float
+  createdAt  DateTime @db.DateTime(0)
+  updatedAt  DateTime @db.DateTime(0)
+}
+
+model SensorWaterFlow {
+  id        Int      @id @default(autoincrement())
+  DebitAir  Float    @db.Float
+  TotalAir  Float    @db.Float
+  createdAt DateTime @db.DateTime(0)
+  updatedAt DateTime @db.DateTime(0)
+}
+
+model users {
+  id           Int      @id @default(autoincrement())
+  username     String   @db.VarChar(255)
+  password     String   @db.VarChar(255)
+  refreshToken String   @db.Text
+  createdAt    DateTime @db.DateTime(0)
+  updatedAt    DateTime @db.DateTime(0)
+}
