@@ -5,10 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { readdirSync } = require('fs');
 
-const db = require('./config/mysql');
-const Users = require('./models/User');
-const humiditySensor = require('./models/HumiditySensor');
-const waterFlowSensor = require('./models/WaterFlowSensor');
 const usersRouter = require('./routes/users');
 const firebaseRoutes = require('./routes/firebases');
 
@@ -41,11 +37,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-readdirSync('./routes').map((file) =>
-	app.use('/', require('./routes/' + file))
-);
-app.use('/login', usersRouter);
-app.use('/firebase', firebaseRoutes);
+// readdirSync('./routes').map((file) =>
+// 	app.use('/', require('./routes/' + file))
+// );
+
+// app.use('/', usersRouter);
+app.use(firebaseRoutes);
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);
