@@ -5,8 +5,6 @@ const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const Users = require('../models/User');
-
 dotenv.config({ path: '../.env' });
 
 router.get(
