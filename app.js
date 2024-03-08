@@ -19,12 +19,7 @@ const port = 3000;
 async function connectToDatabase() {
 	try {
 		await db.authenticate();
-		console.log(
-			'Connection to database has been established successfully.'
-		);
-		await Users.sync();
-		await humiditySensor.sync();
-		await waterFlowSensor.sync();
+		console.log('Connection has been established successfully.');
 	} catch (error) {
 		console.error('Unable to connect to the database:', error);
 	}
