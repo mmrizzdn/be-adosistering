@@ -6,15 +6,34 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { readdirSync } = require('fs');
 
-// const db = require('./config/mysql');
+const db = require('./config/mysql');
+const Users = require('./models/User');
+const humiditySensor = require('./models/HumiditySensor');
+const waterFlowSensor = require('./models/WaterFlowSensor');
 const usersRouter = require('./routes/users');
 const firebaseRoutes = require('./routes/firebases');
 
-dotenv.config();
+require('dotenv').config();
 const app = express();
 const port = 3000;
-const publicDirectory = path.join(__dirname, './public');
 
+async function connectToDatabase() {
+	try {
+		await db.authenticate();
+		console.log(
+			'Connection to database has been established successfully.'
+		);
+		await Users.sync();
+		await humiditySensor.sync();
+		await waterFlowSensor.sync();
+	} catch (error) {
+		console.error('Unable to connect to the database:', error);
+	}
+}
+
+connectToDatabase();
+
+const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 
 // view engine setup
@@ -29,9 +48,8 @@ app.use(express.urlencoded({ extended: false }));
 readdirSync('./routes').map((file) =>
 	app.use('/', require('./routes/' + file))
 );
-
 app.use('/login', usersRouter);
-app.use('/', firebaseRoutes);
+app.use('/firebase', firebaseRoutes);
 
 app.get('/', (req, res) => {
 	res.send('Tes')
