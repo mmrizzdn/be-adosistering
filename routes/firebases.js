@@ -2,9 +2,6 @@ const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const fetch = require('node-fetch');
 
-// const humiditySensor = require('../models/HumiditySensor');
-// const waterFlowSensor = require('../models/WaterFlowSensor');
-
 const prisma = new PrismaClient();
 const currentDate = new Date();
 
